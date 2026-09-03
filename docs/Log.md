@@ -1,23 +1,23 @@
-# modulemanager — journal
+# modulemanager — changelog
 
-Marqueurs : 🟢 ajout · 🔴 rupture · 🔵 correctif · ⚪ interne ou doc · 🟡 propose
-dans le plan, code non ecrit.
+Markers: 🟢 added · 🔴 breaking · 🔵 fix · ⚪ internal or docs · 🟡 proposed
+in the plan, no code written yet.
 
 ## v0.1.0
 
-- 🟢 `Load`, `Unload`, `Reconcile` — condamne n'est pas ferme
-- 🟢 `SharedLibrary` en `RTLD_NOW | RTLD_LOCAL` : c'est ce flag qui fait
-  tenir deux vendors aux classes homonymes dans un meme processus
-- 🟢 table Stride : une colonne par dll, une ligne par contrat, O(1)
-- 🟢 aides typees `Get<T>`, `GetAllByType<T>`, `Current<T>`, `Select<T>`
+- 🟢 `Load`, `Unload`, `Reconcile` — condemned is not closed
+- 🟢 `SharedLibrary` under `RTLD_NOW | RTLD_LOCAL`: this flag is what lets
+  two vendors with same-named classes coexist in one process
+- 🟢 Stride table: one column per dll, one row per contract, O(1)
+- 🟢 typed helpers `Get<T>`, `GetAllByType<T>`, `Current<T>`, `Select<T>`
 - 🟢 23 tests
 
-## v0.2.0 — propose, rien de tout ceci n'est ecrit
+## v0.2.0 — proposed, none of this is written
 
-- 🟡 `Adopt(IModule*, key)` — un module lie en statique entrerait dans la
-  table sans `dlopen`. Meme corps que `Load` sans le `SharedLibrary` ;
-  `Reconcile()` ne changerait pas d'une ligne
-- 🟡 `Binding<T>` — suivre un contrat, tenir le verrou, numeroter les
-  generations, epingler ou suivre le defaut
-- 🟡 registre de jetons : `acquire()` refuserait si une ressource de
-  `claims()` est detenue ailleurs
+- 🟡 `Adopt(IModule*, key)` — a statically linked module would enter the
+  table without `dlopen`. Same body as `Load` minus the `SharedLibrary`;
+  `Reconcile()` would not change a line
+- 🟡 `Binding<T>` — follow a contract, hold the lock, number the
+  generations, pin or follow the default
+- 🟡 token registry: `acquire()` would refuse if a `claims()` resource is
+  held elsewhere
